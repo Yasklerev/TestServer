@@ -29,9 +29,9 @@ class OwnerController {
     }
     listOneOwner(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const id = req.params.id;
+            const { id } = req.params;
             console.log(id);
-            const query = yield database_1.default.query(`SELECT name, last_name, rut FROM Owners WHERE id = ${id}`);
+            const query = yield database_1.default.query(`SELECT * FROM Owners WHERE id = ${id}`);
             res.json(query);
         });
     }
@@ -45,7 +45,7 @@ class OwnerController {
     updateOwner(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const owner = req.body;
-            const { id } = req.params;
+            const { id } = req.body;
             const query = yield database_1.default.query(`UPDATE Owners SET ? WHERE id = ?`, [
                 owner,
                 id,
@@ -55,7 +55,7 @@ class OwnerController {
     }
     deleteOwner(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const id = req.params.id;
+            const { id } = req.params;
             const query = yield database_1.default.query("DELETE FROM Owners WHERE id = ?", id);
             res.json(query);
         });

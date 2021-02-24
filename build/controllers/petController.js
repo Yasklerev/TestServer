@@ -16,21 +16,21 @@ const database_1 = __importDefault(require("../database"));
 class PetController {
     createPet(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const Pet = req.body;
-            const query = yield database_1.default.query("INSERT INTO Pets SET ?", Pet);
+            const pet = req.body;
+            const query = yield database_1.default.query("INSERT INTO Pets SET ?", pet);
             res.json(query);
         });
     }
     listAllPets(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = yield database_1.default.query("SELECT  Pets.name as namePet, Pets.type_pet, Pets.race, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id;");
+            const query = yield database_1.default.query("SELECT  Pets.id, Pets.name as namePet, Pets.type_pet, Pets.race, Pets.sex, Pets.birthday, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id;");
             res.json(query);
         });
     }
     listOnePet(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const query = yield database_1.default.query(`SELECT Pets.id, Pets.name as namePet, Pets.type_pet, Pets.race, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id WHERE Owners.id = ${id}`);
+            const query = yield database_1.default.query(`SELECT Pets.id, Pets.name as namePet, Pets.type_pet, Pets.race, Pets.sex, Pets.birthday, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id WHERE Owners.id = ${id}`);
             res.json(query);
         });
     }
@@ -43,9 +43,9 @@ class PetController {
     }
     updatePet(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const Pet = req.body;
-            const { id } = req.params;
-            const query = yield database_1.default.query(`UPDATE Pets SET ? WHERE id = ?`, [Pet, id]);
+            const pet = req.body;
+            const id = req.body.id;
+            const query = yield database_1.default.query(`UPDATE Pets SET ? WHERE id = ?`, [pet, id]);
             res.json(query);
         });
     }

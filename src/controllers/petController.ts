@@ -3,14 +3,15 @@ import pool from "../database";
 
 class PetController {
   public async createPet(req: Request, res: Response) {
-    const Pet = req.body;
-    const query = await pool.query("INSERT INTO Pets SET ?", Pet);
+    const pet = req.body;
+
+    const query = await pool.query("INSERT INTO Pets SET ?", pet);
     res.json(query);
   }
 
   public async listAllPets(req: Request, res: Response) {
     const query = await pool.query(
-      "SELECT  Pets.name as namePet, Pets.type_pet, Pets.race, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id;"
+      "SELECT  Pets.id, Pets.name as namePet, Pets.type_pet, Pets.race, Pets.sex, Pets.birthday, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id;"
     );
     res.json(query);
   }
@@ -18,7 +19,7 @@ class PetController {
   public async listOnePet(req: Request, res: Response) {
     const { id } = req.params;
     const query = await pool.query(
-      `SELECT Pets.id, Pets.name as namePet, Pets.type_pet, Pets.race, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id WHERE Owners.id = ${id}`
+      `SELECT Pets.id, Pets.name as namePet, Pets.type_pet, Pets.race, Pets.sex, Pets.birthday, Owners.name, Owners.last_name, Owners.rut FROM Pets INNER JOIN Owners on Pets.owner = Owners.id WHERE Owners.id = ${id}`
     );
     res.json(query);
   }
@@ -33,9 +34,9 @@ class PetController {
   }
 
   public async updatePet(req: Request, res: Response) {
-    const Pet = req.body;
-    const { id } = req.params;
-    const query = await pool.query(`UPDATE Pets SET ? WHERE id = ?`, [Pet, id]);
+    const pet = req.body;
+    const id = req.body.id;
+    const query = await pool.query(`UPDATE Pets SET ? WHERE id = ?`, [pet, id]);
     res.json(query);
   }
 

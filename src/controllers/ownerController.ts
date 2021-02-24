@@ -16,11 +16,9 @@ class OwnerController {
   }
 
   public async listOneOwner(req: Request, res: Response) {
-    const id = req.params.id;
+    const { id } = req.params;
     console.log(id);
-    const query = await pool.query(
-      `SELECT name, last_name, rut FROM Owners WHERE id = ${id}`
-    );
+    const query = await pool.query(`SELECT * FROM Owners WHERE id = ${id}`);
     res.json(query);
   }
 
@@ -35,7 +33,7 @@ class OwnerController {
 
   public async updateOwner(req: Request, res: Response) {
     const owner = req.body;
-    const { id } = req.params;
+    const { id } = req.body;
     const query = await pool.query(`UPDATE Owners SET ? WHERE id = ?`, [
       owner,
       id,
@@ -44,7 +42,7 @@ class OwnerController {
   }
 
   public async deleteOwner(req: Request, res: Response) {
-    const id = req.params.id;
+    const { id } = req.params;
     const query = await pool.query("DELETE FROM Owners WHERE id = ?", id);
     res.json(query);
   }

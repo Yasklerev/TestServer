@@ -12,7 +12,7 @@ class PetsRoutes {
         this.router.get("/listAllPets", petController_1.petController.listAllPets);
         this.router.get("/listOnePet/:id", petController_1.petController.listOnePet);
         this.router.get("/searchPet", petController_1.petController.searchPet);
-        this.router.put("/updatePet/:id", petController_1.petController.updatePet);
+        this.router.put("/updatePet", petController_1.petController.updatePet);
         this.router.delete("/deletePet/:id", petController_1.petController.deletePet);
     }
 }

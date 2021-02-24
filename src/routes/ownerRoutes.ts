@@ -13,7 +13,7 @@ class OwnerRotues {
     this.router.get("/listAllOwners", ownerController.listAllOwners);
     this.router.get("/listOneOwner/:id", ownerController.listOneOwner);
     this.router.get("/searchOwner", ownerController.searchOwner);
-    this.router.put("/updateOwner/:id", ownerController.updateOwner);
+    this.router.put("/updateOwner", ownerController.updateOwner);
     this.router.delete("/deleteOwner/:id", ownerController.deleteOwner);
   }
 }

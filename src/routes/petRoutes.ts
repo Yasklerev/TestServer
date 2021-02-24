@@ -13,7 +13,7 @@ class PetsRoutes {
     this.router.get("/listAllPets", petController.listAllPets);
     this.router.get("/listOnePet/:id", petController.listOnePet);
     this.router.get("/searchPet", petController.searchPet);
-    this.router.put("/updatePet/:id", petController.updatePet);
+    this.router.put("/updatePet", petController.updatePet);
     this.router.delete("/deletePet/:id", petController.deletePet);
   }
 }
