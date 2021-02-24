@@ -1,8 +1,8 @@
 export default {
   database: {
     host: "localhost",
-    user: "root",
-    password: "bnm",
+    user: "user",
+    password: "password",
     database: "OwnersAndPets",
   },
 };
