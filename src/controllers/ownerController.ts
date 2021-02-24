@@ -10,7 +10,7 @@ class OwnerController {
 
   public async listAllOwners(req: Request, res: Response) {
     const query = await pool.query(
-      "SELECT id, name, last_name, rut FROM Owners"
+      "SELECT id, name, email, last_name, rut, address, substring(birthday, 1, 10) as birthday FROM Owners"
     );
     res.json(query);
   }

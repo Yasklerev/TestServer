@@ -23,7 +23,7 @@ class OwnerController {
     }
     listAllOwners(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = yield database_1.default.query("SELECT id, name, last_name, rut FROM Owners");
+            const query = yield database_1.default.query("SELECT id, name, email, last_name, rut, address, substring(birthday, 1, 10) as birthday FROM Owners");
             res.json(query);
         });
     }
