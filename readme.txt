@@ -2,7 +2,13 @@ Intrucciones:
     Base de datos Mysql
     Script de la base de datos en el archivo: "database.sql"
     npm install 
-    npm run dev
+    npm i typescript
+
+    Cambiar datos en el archivo keys.ts por los datos de conexión que correspondan.
+
+    npm run build para ejecutar los cambios.
+
+    npm run dev para poner en marcha el sistema.
 
     api:
         GET http://localhost:3000/listOneOwner/:id Obtener un propietario.
